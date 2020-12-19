@@ -1,7 +1,7 @@
 // purchace block toggle
 
 (function ($) {
-    $(document).on('click', '.purchase__arrow', function (e) {
+    $(document).on('click', '.arrow', function (e) {
         purchaceBlockToggle.call(this, e);
     });
 })(jQuery);

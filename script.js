@@ -1,24 +1,29 @@
 // Expand Panel
 
-const $wrapper = document.querySelector('.wrapper');
-const $arrow = document.querySelector('.arrow');
-const $top = document.querySelector('.top');
-const $middle = document.querySelector('.middle');
-const $bottom = document.querySelector('.bottom');
+const $wrapper = $('.wrapper');
+const $arrow = $('.arrow');
+const $top = $('.top');
+const $middle = $('.middle');
+const $bottom = $('.bottom');
 
 let isMovedDown = false;
+const wrapperHeight = $wrapper[0].getBoundingClientRect().height;
 
-$arrow.addEventListener('click', ()=> {
-    const totalHeight = $middle.getBoundingClientRect().height
-        + $top.getBoundingClientRect().height
-        + $bottom.getBoundingClientRect().height;
-   console.log(totalHeight);
-   $wrapper.style = "height:" + totalHeight.toString() + "px;"
-    isMovedDown = true;
+$arrow.on('click', function () {
+
+    if (!isMovedDown) {
+        const totalHeight = $middle[0].getBoundingClientRect().height + $top[0].getBoundingClientRect().height + $bottom[0].getBoundingClientRect().height;
+
+        gsap.to($wrapper, {duration: 1, height: totalHeight});
+        isMovedDown = true;
+    } else {
+        gsap.to($wrapper, {duration: 1, height: wrapperHeight});
+        isMovedDown = false;
+    }
 });
 
-console.log($middle.getBoundingClientRect());
-console.log($wrapper.getBoundingClientRect());
+
+
 
 
 
